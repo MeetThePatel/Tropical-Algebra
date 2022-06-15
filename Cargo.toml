@@ -3,7 +3,7 @@ name = "tropical_algebra"
 description = "Implementation of the tropical algebra in Rust."
 repository = "https://github.com/MeetThePatel/Tropical-Algebra"
 homepage = "https://github.com/MeetThePatel/Tropical-Algebra"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 license = "MIT"
 
