@@ -2,6 +2,8 @@
 
 This package is an implementation of the tropical algebra in Rust.
 
+[Crates.io](https://crates.io/crates/tropical_algebra)
+
 **Warning**: This package is in very early stages of development. Many features have not been implemented yet.
 
 ## Planned Features:
