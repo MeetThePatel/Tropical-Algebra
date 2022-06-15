@@ -1,9 +1,14 @@
 [package]
 name = "tropical_algebra"
-version = "0.1.0"
+description = "Implementation of the tropical algebra in Rust."
+repository = "https://github.com/MeetThePatel/Tropical-Algebra"
+homepage = "https://github.com/MeetThePatel/Tropical-Algebra"
+version = "0.0.1"
 edition = "2021"
+license = "MIT"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-num-traits = "0.2.15"
+#num-traits = "0.2.15"
