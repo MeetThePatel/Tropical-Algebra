@@ -8,11 +8,6 @@ edition = "2021"
 license = "MIT"
 exclude = ["/src/bin"]
 
-[[bin]]
-name = "main"
-test = false
-bench = false
-
 [dependencies]
 num-traits = "0.2.15"
 ndarray = "0.15.4"
