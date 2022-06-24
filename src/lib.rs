@@ -1,4 +1,4 @@
-use std::ops::{Add, Mul};
+use std::ops::{Add, AddAssign, Mul, MulAssign};
 
 /// An element of the *max tropical semiring* (or **max-plus semiring** or **max-plus algebra**). A cursory exposition to the max tropical semiring can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring#:~:text=max%20tropical%20semiring).
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
@@ -33,12 +33,26 @@ impl Add for MaxTropical {
     }
 }
 
+impl AddAssign for MaxTropical {
+    /// Addition assignment operation in the max tropical semiring.
+    fn add_assign(&mut self, rhs: Self) {
+        *self = *self + rhs;
+    }
+}
+
 impl Mul for MaxTropical {
     type Output = Self;
 
     /// Multiplication operation in the max tropical semiring.
     fn mul(self, rhs: Self) -> Self::Output {
         MaxTropical(self.0 + rhs.0)
+    }
+}
+
+impl MulAssign for MaxTropical {
+    /// Multiplication assignment operation in the max tropical semiring.
+    fn mul_assign(&mut self, rhs: Self) {
+        *self = *self * rhs;
     }
 }
 
@@ -87,12 +101,26 @@ impl Add for MinTropical {
     }
 }
 
+impl AddAssign for MinTropical {
+    /// Addition assignment operation in the min tropical semiring.
+    fn add_assign(&mut self, rhs: Self) {
+        *self = *self + rhs;
+    }
+}
+
 impl Mul for MinTropical {
     type Output = Self;
 
     /// Multiplication operation in the min tropical semiring.
     fn mul(self, rhs: Self) -> Self::Output {
         MinTropical(self.0 + rhs.0)
+    }
+}
+
+impl MulAssign for MinTropical {
+    /// Multiplication assignment operation in the min tropical algebra.
+    fn mul_assign(&mut self, rhs: Self) {
+        *self = *self * rhs;
     }
 }
 
@@ -122,10 +150,24 @@ mod tests {
     }
 
     #[test]
+    fn max_addition_assign() {
+        let mut x = MaxTropical(5.0);
+        x += MaxTropical(1.0);
+        assert_eq!(x, MaxTropical(5.0));
+    }
+
+    #[test]
     fn max_multiplication() {
         let x = MaxTropical(5.0);
         let y = MaxTropical(1.0);
         assert_eq!(x * y, MaxTropical(6.0));
+    }
+
+    #[test]
+    fn max_multiplication_assign() {
+        let mut x = MaxTropical(5.0);
+        x *= MaxTropical(1.0);
+        assert_eq!(x, MaxTropical(6.0));
     }
 
     #[test]
@@ -150,10 +192,24 @@ mod tests {
     }
 
     #[test]
+    fn min_addition_assign() {
+        let mut x = MinTropical(5.0);
+        x += MinTropical(1.0);
+        assert_eq!(x, MinTropical(1.0));
+    }
+
+    #[test]
     fn min_multiplication() {
         let x = MinTropical(5.0);
         let y = MinTropical(1.0);
         assert_eq!(x * y, MinTropical(6.0));
+    }
+
+    #[test]
+    fn min_multiplication_assign() {
+        let mut x = MinTropical(5.0);
+        x *= MinTropical(1.0);
+        assert_eq!(x, MinTropical(6.0));
     }
 
     #[test]
