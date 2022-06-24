@@ -10,5 +10,6 @@ license = "MIT"
 exclude = ["/src/bin"]
 
 [dependencies]
-num-traits = "0.2.15"
+auto_ops = "0.3.0"
 ndarray = "0.15.4"
+num-traits = "0.2.15"

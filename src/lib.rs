@@ -1,6 +1,6 @@
 //! This library is an implementation of the tropical algebras in Rust. A cursory exposition to the tropical algebras can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring).
 
-use std::ops::{Add, AddAssign, Mul, MulAssign};
+use auto_ops::impl_op_ex;
 
 /// An element of the *max tropical semiring* (or **max-plus semiring** or **max-plus algebra**). A cursory exposition to the max tropical semiring can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring#:~:text=max%20tropical%20semiring).
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
@@ -26,37 +26,10 @@ impl std::fmt::Display for MaxTropical {
     }
 }
 
-impl Add for MaxTropical {
-    type Output = Self;
-
-    /// Addition operation in the max tropical semiring.
-    fn add(self, rhs: Self) -> Self {
-        MaxTropical(self.0.max(rhs.0))
-    }
-}
-
-impl AddAssign for MaxTropical {
-    /// Addition assignment operation in the max tropical semiring.
-    fn add_assign(&mut self, rhs: Self) {
-        *self = *self + rhs;
-    }
-}
-
-impl Mul for MaxTropical {
-    type Output = Self;
-
-    /// Multiplication operation in the max tropical semiring.
-    fn mul(self, rhs: Self) -> Self::Output {
-        MaxTropical(self.0 + rhs.0)
-    }
-}
-
-impl MulAssign for MaxTropical {
-    /// Multiplication assignment operation in the max tropical semiring.
-    fn mul_assign(&mut self, rhs: Self) {
-        *self = *self * rhs;
-    }
-}
+impl_op_ex!(+ |a: MaxTropical, b: MaxTropical| -> MaxTropical { MaxTropical(a.0.max(b.0)) });
+impl_op_ex!(+= |a: &mut MaxTropical, b: MaxTropical| { a.0 = a.0.max(b.0) });
+impl_op_ex!(* |a: MaxTropical, b: MaxTropical| -> MaxTropical { MaxTropical(a.0 + b.0) });
+impl_op_ex!(*= |a: &mut MaxTropical, b: MaxTropical| { a.0 = a.0 + b.0 });
 
 impl num_traits::identities::Zero for MaxTropical {
     fn zero() -> Self {
@@ -94,37 +67,10 @@ impl std::fmt::Display for MinTropical {
     }
 }
 
-impl Add for MinTropical {
-    type Output = Self;
-
-    /// Addition operation in the min tropical semiring.
-    fn add(self, rhs: Self) -> Self {
-        MinTropical(self.0.min(rhs.0))
-    }
-}
-
-impl AddAssign for MinTropical {
-    /// Addition assignment operation in the min tropical semiring.
-    fn add_assign(&mut self, rhs: Self) {
-        *self = *self + rhs;
-    }
-}
-
-impl Mul for MinTropical {
-    type Output = Self;
-
-    /// Multiplication operation in the min tropical semiring.
-    fn mul(self, rhs: Self) -> Self::Output {
-        MinTropical(self.0 + rhs.0)
-    }
-}
-
-impl MulAssign for MinTropical {
-    /// Multiplication assignment operation in the min tropical algebra.
-    fn mul_assign(&mut self, rhs: Self) {
-        *self = *self * rhs;
-    }
-}
+impl_op_ex!(+ |a: MinTropical, b: MinTropical| -> MinTropical { MinTropical(a.0.min(b.0)) });
+impl_op_ex!(+= |a: &mut MinTropical, b: MinTropical| { a.0 = a.0.min(b.0) });
+impl_op_ex!(* |a: MinTropical, b: MinTropical| -> MinTropical { MinTropical(a.0 + b.0) });
+impl_op_ex!(*= |a: &mut MinTropical, b: MinTropical| { a.0 = a.0 + b.0 });
 
 impl num_traits::identities::Zero for MinTropical {
     fn zero() -> Self {
