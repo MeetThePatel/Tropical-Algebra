@@ -1,3 +1,5 @@
+//! This library is an implementation of the tropical algebras in Rust. A cursory exposition to the tropical algebras can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring).
+
 use std::ops::{Add, AddAssign, Mul, MulAssign};
 
 /// An element of the *max tropical semiring* (or **max-plus semiring** or **max-plus algebra**). A cursory exposition to the max tropical semiring can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring#:~:text=max%20tropical%20semiring).

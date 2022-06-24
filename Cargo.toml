@@ -2,6 +2,7 @@
 name = "tropical_algebra"
 description = "Implementation of the tropical algebra in Rust."
 repository = "https://github.com/MeetThePatel/Tropical-Algebra"
+documentation = "https://docs.rs/tropical_algebra/0.0.2/tropical_algebra/"
 homepage = "https://github.com/MeetThePatel/Tropical-Algebra"
 version = "0.0.3"
 edition = "2021"
