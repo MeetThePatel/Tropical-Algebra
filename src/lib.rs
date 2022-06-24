@@ -1,11 +1,20 @@
 use std::ops::{Add, Mul};
 
-#[derive(PartialEq, PartialOrd, Debug, Clone, Copy)]
-pub struct MaxTropical(pub f64);
+/// An element of the *max tropical semiring* (or **max-plus semiring** or **max-plus algebra**). A cursory exposition to the max tropical semiring can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring#:~:text=max%20tropical%20semiring).
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub struct MaxTropical(
+    pub f64
+);
 
 impl MaxTropical {
+    /// Addition unit element of the max tropical semiring.
     pub fn ninf() -> MaxTropical {
         MaxTropical(f64::NEG_INFINITY)
+    }
+
+    /// Multiplication unit element of the max tropical semiring.
+    pub fn zero() -> MaxTropical {
+        MaxTropical(0.0)
     }
 }
 
@@ -18,6 +27,7 @@ impl std::fmt::Display for MaxTropical {
 impl Add for MaxTropical {
     type Output = Self;
 
+    /// Addition operation in the max tropical semiring.
     fn add(self, rhs: Self) -> Self {
         MaxTropical(self.0.max(rhs.0))
     }
@@ -26,6 +36,7 @@ impl Add for MaxTropical {
 impl Mul for MaxTropical {
     type Output = Self;
 
+    /// Multiplication operation in the max tropical semiring.
     fn mul(self, rhs: Self) -> Self::Output {
         MaxTropical(self.0 + rhs.0)
     }
@@ -45,12 +56,19 @@ impl num_traits::identities::Zero for MaxTropical {
     }
 }
 
-#[derive(PartialEq, PartialOrd, Debug)]
+/// An element of the *min tropical semiring* (or **min-plus semiring** or **min-plus algebra**). A cursory exposition to the min tropical semiring can be found on [Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring#:~:text=min%20tropical%20semiring).
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct MinTropical(f64);
 
 impl MinTropical {
+    /// Addition unit element of the min tropical semiring.
     pub fn inf() -> MinTropical {
         MinTropical(f64::INFINITY)
+    }
+
+    /// Multiplication unit element of the min tropical semiring.
+    pub fn zero() -> MinTropical {
+        MinTropical(0.0)
     }
 }
 
@@ -63,6 +81,7 @@ impl std::fmt::Display for MinTropical {
 impl Add for MinTropical {
     type Output = Self;
 
+    /// Addition operation in the min tropical semiring.
     fn add(self, rhs: Self) -> Self {
         MinTropical(self.0.min(rhs.0))
     }
@@ -71,6 +90,7 @@ impl Add for MinTropical {
 impl Mul for MinTropical {
     type Output = Self;
 
+    /// Multiplication operation in the min tropical semiring.
     fn mul(self, rhs: Self) -> Self::Output {
         MinTropical(self.0 + rhs.0)
     }
