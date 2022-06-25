@@ -9,5 +9,5 @@ This package is an implementation of the tropical algebra in Rust.
 ## Planned Features:
 
 - [X] Implement the basic elements of the ring, and their associated operations.
+- [X] Add support for matrices (using tropical matrix addition and matrix multiplication).
 - [ ] Convert implementation to generics (to generalize from `f64` to any numeric type).
-- [ ] Add support for matrices (using tropical matrix addition and matrix multiplication).
